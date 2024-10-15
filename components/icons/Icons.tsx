@@ -9,7 +9,7 @@ const Icons = () => {
           <p>
             <strong>Free Shipping</strong>
           </p>
-          <p>Order above $200</p>
+          <p>Order above PKR 2000.00</p>
         </div>
       </div>
       <div className='flex flex-col justify-center gap-4 bg-base-300 px-4 py-8 md:px-12'>

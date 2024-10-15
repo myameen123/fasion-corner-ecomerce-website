@@ -81,7 +81,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             <div className='card-body'>
               <div className='flex justify-between'>
                 <div>Price</div>
-                <div>${product.price}</div>
+                <div>PKR {product.price}</div>
               </div>
               <div className='mb-2 flex justify-between'>
                 <div>Status</div>

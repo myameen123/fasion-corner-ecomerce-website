@@ -23,13 +23,13 @@ const Carousel = async () => {
             <div className='w-full overflow-hidden rounded-lg'>
               <Link href={`/product/${product.slug}`}>
                 <Image
-                  src={product.banner!}
+                  src='https://res.cloudinary.com/dikrruxtt/image/upload/v1683143733/samples/ecommerce/leather-bag-gray.jpg'
                   className='h-[304px] w-full object-cover lg:h-[536px]'
                   width={1500}
                   height={300}
                   alt={product.name}
-                  blurDataURL={product.banner!}
-                  placeholder='blur'
+                  // blurDataURL={product.banner!}
+                  // placeholder='blur'
                   sizes='(max-width: 1500px) 100vw, 1500px'
                   priority
                 />

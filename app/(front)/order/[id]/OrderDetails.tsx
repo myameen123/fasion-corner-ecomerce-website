@@ -142,7 +142,7 @@ const OrderDetails = ({ orderId, paypalClientId }: IOrderDetails) => {
                         </Link>
                       </td>
                       <td>{item.qty}</td>
-                      <td>${item.price}</td>
+                      <td>PKR {item.price}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -159,25 +159,25 @@ const OrderDetails = ({ orderId, paypalClientId }: IOrderDetails) => {
                 <li>
                   <div className='mb-2 flex justify-between'>
                     <div>Items</div>
-                    <div>${itemsPrice}</div>
+                    <div>PKR {itemsPrice}</div>
                   </div>
                 </li>
                 <li>
                   <div className='mb-2 flex justify-between'>
                     <div>Tax</div>
-                    <div>${taxPrice}</div>
+                    <div>PKR {taxPrice}</div>
                   </div>
                 </li>
                 <li>
                   <div className='mb-2 flex justify-between'>
                     <div>Shipping</div>
-                    <div>${shippingPrice}</div>
+                    <div>PKR {shippingPrice}</div>
                   </div>
                 </li>
                 <li>
                   <div className='mb-2 flex justify-between'>
                     <div>Total</div>
-                    <div>${totalPrice}</div>
+                    <div>PKR {totalPrice}</div>
                   </div>
                 </li>
 

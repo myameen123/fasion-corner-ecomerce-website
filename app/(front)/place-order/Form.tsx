@@ -138,7 +138,7 @@ const Form = () => {
                       <td>
                         <span>{item.qty}</span>
                       </td>
-                      <td>${item.price}</td>
+                      <td>PKR {item.price}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -160,25 +160,25 @@ const Form = () => {
                 <li>
                   <div className=' flex justify-between'>
                     <div>Items</div>
-                    <div>${itemsPrice}</div>
+                    <div>PKR {itemsPrice}</div>
                   </div>
                 </li>
                 <li>
                   <div className=' flex justify-between'>
                     <div>Tax</div>
-                    <div>${taxPrice}</div>
+                    <div>PKR {taxPrice}</div>
                   </div>
                 </li>
                 <li>
                   <div className=' flex justify-between'>
                     <div>Shipping</div>
-                    <div>${shippingPrice}</div>
+                    <div>PKR {shippingPrice}</div>
                   </div>
                 </li>
                 <li>
                   <div className=' flex justify-between'>
                     <div>Total</div>
-                    <div>${totalPrice}</div>
+                    <div>PKR {totalPrice}</div>
                   </div>
                 </li>
 
