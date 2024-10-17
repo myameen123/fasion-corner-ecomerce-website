@@ -21,7 +21,7 @@ const CheckoutContext = createContext<CheckoutContextType | undefined>(
 
 // Provide the context to components
 export const CheckoutProvider = ({ children }: { children: ReactNode }) => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [subSteps, setSubSteps] = useState<SubStepsType>({ 0: 0, 1: 0, 2: 0 });
 
   const nextSubStep = () => {
