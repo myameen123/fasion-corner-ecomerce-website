@@ -72,29 +72,24 @@ const Form = () => {
 
   return (
     <div>
-      <CheckoutSteps current={1} />
-      <div className='card mx-auto my-4 max-w-sm bg-base-300'>
-        <div className='card-body'>
-          <h1 className='card-title'>Shipping Address</h1>
-          <form onSubmit={handleSubmit(formSubmit)}>
-            <FormInput name='Full Name' id='fullName' required />
-            <FormInput name='Address' id='address' required />
-            <FormInput name='City' id='city' required />
-            <FormInput name='Postal Code' id='postalCode' required />
-            <FormInput name='Country' id='country' required />
-            <div className='my-2'>
-              <button
-                type='submit'
-                disabled={isSubmitting}
-                className='btn btn-primary w-full'
-              >
-                {isSubmitting && <span className='loading loading-spinner' />}
-                Next
-              </button>
-            </div>
-          </form>
+      <h1 className='card-title'>Shipping Address</h1>
+      <form onSubmit={handleSubmit(formSubmit)}>
+        <FormInput name='Full Name' id='fullName' required />
+        <FormInput name='Address' id='address' required />
+        <FormInput name='City' id='city' required />
+        <FormInput name='Postal Code' id='postalCode' required />
+        <FormInput name='Country' id='country' required />
+        <div className='my-2'>
+          <button
+            type='submit'
+            disabled={isSubmitting}
+            className='btn btn-primary w-full'
+          >
+            {isSubmitting && <span className='loading loading-spinner' />}
+            Next
+          </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

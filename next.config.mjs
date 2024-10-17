@@ -15,6 +15,7 @@ const nextConfig = {
       },
     ],
     formats: ['image/avif', 'image/webp'],
+    domains: ['flagcdn.com'],
   },
   // experimental: {
   //   ppr: true,
