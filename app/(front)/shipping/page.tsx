@@ -48,7 +48,7 @@ const ShippingContent = () => {
   };
 
   return (
-    <div className=' flex h-full w-full items-center justify-center'>
+    <div className=' flex h-full w-full items-center justify-center text-sm'>
       <CartModal checkoutSteps={step}>{renderSubStepComponent()}</CartModal>
     </div>
   );

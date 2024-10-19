@@ -1,32 +1,44 @@
-'use client';
 import React, { useState } from 'react';
 
 import { useCheckout } from '@/components/contexts/CheckoutContext';
 
 import AddressCard from './AddressCard';
+import AddressForm from './addressForm';
+
+// import AddressCard from './AddressCard';
+// import AddressForm from './AddressForm';
 
 const ADDRESSES = [
   {
-    name: 'Muhammad Yameen',
+    fullName: 'Muhammad Yameen',
     email: 'myameen960@gmail.com',
     address: 'Room 205, Ghazli hostel, Nust H12 Sector Islamabad, Pakistan',
-    zip_code: '41000',
+    postalCode: '41000',
+    city: 'Islamabad',
+    country: 'pakistan',
   },
   {
-    name: 'Muhammad Yameen',
+    fullName: 'Muhammad Yameen',
     email: 'myameen960@gmail.com',
     address:
       '24/345, Ali Khan Colony, Near Sector 32, Larkana, Sindh, Pakistan',
-    zip_code: '21350',
+    postalCode: '21350',
+    city: 'Larkana',
+    country: 'pakistan',
   },
 ];
 
 function StoredAddresses() {
   const { nextStep, prevStep } = useCheckout();
   const [selectedAddress, setSelectedAddress] = useState<string | null>(null);
+  const [editingAddress, setEditingAddress] = useState<any | null>(null); // To store the address being edited
 
   const handleAddressSelect = (address: string) => {
     setSelectedAddress(address);
+  };
+
+  const handleEditAddress = (address: any) => {
+    setEditingAddress(address); // Pass the address being edited
   };
 
   return (
@@ -37,27 +49,37 @@ function StoredAddresses() {
           Edit
         </button>
       </div>
-      {ADDRESSES.map((a) => (
-        <AddressCard
-          key={a.address}
-          name={a.name}
-          email={a.email}
-          address={a.address}
-          zip_code={a.zip_code}
-          isSelected={selectedAddress === a.address}
-          onSelect={() => handleAddressSelect(a.address)}
+      {editingAddress ? (
+        <AddressForm
+          initialValues={editingAddress}
+          onCancel={() => setEditingAddress(null)}
         />
-      ))}
-      <button
-        className='btn btn-primary w-full'
-        onClick={nextStep}
-        disabled={!selectedAddress} // Disable if no address is selected
-      >
-        Continue
-      </button>
-      <button className='btn btn-primary w-full' onClick={prevStep}>
-        Back
-      </button>
+      ) : (
+        <>
+          {ADDRESSES.map((a) => (
+            <AddressCard
+              key={a.address}
+              fullName={a.fullName}
+              email={a.email}
+              address={a.address}
+              postalCode={a.postalCode}
+              isSelected={selectedAddress === a.address}
+              onSelect={() => handleAddressSelect(a.address)}
+              onEdit={() => handleEditAddress(a)} // Pass the address to the edit handler
+            />
+          ))}
+          <button
+            className='btn btn-primary w-full'
+            onClick={nextStep}
+            disabled={!selectedAddress}
+          >
+            Continue
+          </button>
+          <button className='btn btn-primary w-full' onClick={prevStep}>
+            Back
+          </button>
+        </>
+      )}
     </div>
   );
 }
