@@ -126,7 +126,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
               <button
                 type='button'
                 onClick={onCancel}
-                className='btn btn-secondary mt-2 w-full'
+                className='btn btn-primary mt-2 w-full'
               >
                 Cancel
               </button>
