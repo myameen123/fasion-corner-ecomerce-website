@@ -12,7 +12,10 @@ const ProductItem = async ({ product }: { product: Product }) => {
   );
 
   const { base64 } = await getPlaiceholder(buffer);
-
+  const formattedPrice = product.price.toLocaleString('en-PK', {
+    style: 'currency',
+    currency: 'PKR',
+  });
   return (
     <div className='card mb-4 bg-base-300'>
       <figure>
@@ -40,7 +43,7 @@ const ProductItem = async ({ product }: { product: Product }) => {
         <Rating value={product.rating} caption={`(${product.name})`} isCard />
         <p className='line-clamp-1'>{product.brand}</p>
         <div className='card-actions flex items-center justify-between'>
-          <span className='text-2xl'>PKR {product.price}</span>
+          <span className='text-2xl'>{formattedPrice}</span>
         </div>
       </div>
     </div>
