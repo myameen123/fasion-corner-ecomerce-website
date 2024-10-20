@@ -117,14 +117,17 @@ const Dashboard = () => {
       },
     ],
   };
-
+  // const formattedPrice = price.toLocaleString('en-PK', {
+  //   style: 'currency',
+  //   currency: 'PKR',
+  // });
   return (
     <div>
       <div className='stats stats-vertical my-4 inline-grid shadow md:stats-horizontal md:flex'>
         <div className='stat'>
           <div className='stat-title'>Sales</div>
           <div className='stat-value text-primary'>
-            ${formatNumber(summary.ordersPrice)}
+            Rs {formatNumber(summary.ordersPrice)}
           </div>
           <div className='stat-desc'>
             <Link href='/admin/orders'>View sales</Link>

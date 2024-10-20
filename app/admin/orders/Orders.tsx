@@ -10,7 +10,10 @@ export default function Orders() {
 
   if (error) return 'An error has occurred.';
   if (isLoading) return 'Loading...';
-
+  // const formattedPrice = order.totalPrice.toLocaleString('en-PK', {
+  //   style: 'currency',
+  //   currency: 'PKR',
+  // });
   return (
     <div>
       <h1 className='py-4 text-2xl'>Orders</h1>
@@ -33,7 +36,12 @@ export default function Orders() {
                 <td>..{order._id.substring(20, 24)}</td>
                 <td>{order.user?.name || 'Deleted user'}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
-                <td>${order.totalPrice}</td>
+                <td>
+                  {order.totalPrice.toLocaleString('en-PK', {
+                    style: 'currency',
+                    currency: 'PKR',
+                  })}
+                </td>
                 <td>
                   {order.isPaid && order.paidAt
                     ? `${order.paidAt.substring(0, 10)}`

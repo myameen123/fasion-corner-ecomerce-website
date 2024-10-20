@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getPlaiceholder } from 'plaiceholder';
+// import { getPlaiceholder } from 'plaiceholder';
 
 import AddToCart from '@/components/products/AddToCart';
 import { Rating } from '@/components/products/Rating';
@@ -32,11 +32,15 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
     return notFound();
   }
 
-  const buffer = await fetch(product.image).then(async (res) =>
-    Buffer.from(await res.arrayBuffer()),
-  );
+  // const buffer = await fetch(product.image).then(async (res) =>
+  //   Buffer.from(await res.arrayBuffer()),
+  // );
 
-  const { base64 } = await getPlaiceholder(buffer);
+  // const { base64 } = await getPlaiceholder(buffer);
+  const formattedPrice = product.price.toLocaleString('en-PK', {
+    style: 'currency',
+    currency: 'PKR',
+  });
 
   return (
     <div className='my-2'>
@@ -49,7 +53,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             src={product.image}
             alt={product.name}
             placeholder='blur'
-            blurDataURL={base64}
+            blurDataURL={product.image}
             width={640}
             height={640}
             sizes='100vw'
@@ -81,7 +85,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             <div className='card-body'>
               <div className='flex justify-between'>
                 <div>Price</div>
-                <div>PKR {product.price}</div>
+                <div>{formattedPrice}</div>
               </div>
               <div className='mb-2 flex justify-between'>
                 <div>Status</div>

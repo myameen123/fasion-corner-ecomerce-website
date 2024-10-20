@@ -142,7 +142,12 @@ const OrderDetails = ({ orderId, paypalClientId }: IOrderDetails) => {
                         </Link>
                       </td>
                       <td>{item.qty}</td>
-                      <td>PKR {item.price}</td>
+                      <td>
+                        {item.price.toLocaleString('en-PK', {
+                          style: 'currency',
+                          currency: 'PKR',
+                        })}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -159,25 +164,45 @@ const OrderDetails = ({ orderId, paypalClientId }: IOrderDetails) => {
                 <li>
                   <div className='mb-2 flex justify-between'>
                     <div>Items</div>
-                    <div>PKR {itemsPrice}</div>
+                    <div>
+                      {itemsPrice.toLocaleString('en-PK', {
+                        style: 'currency',
+                        currency: 'PKR',
+                      })}
+                    </div>
                   </div>
                 </li>
                 <li>
                   <div className='mb-2 flex justify-between'>
                     <div>Tax</div>
-                    <div>PKR {taxPrice}</div>
+                    <div>
+                      {taxPrice.toLocaleString('en-PK', {
+                        style: 'currency',
+                        currency: 'PKR',
+                      })}
+                    </div>
                   </div>
                 </li>
                 <li>
                   <div className='mb-2 flex justify-between'>
                     <div>Shipping</div>
-                    <div>PKR {shippingPrice}</div>
+                    <div>
+                      {shippingPrice.toLocaleString('en-PK', {
+                        style: 'currency',
+                        currency: 'PKR',
+                      })}
+                    </div>
                   </div>
                 </li>
                 <li>
                   <div className='mb-2 flex justify-between'>
                     <div>Total</div>
-                    <div>PKR {totalPrice}</div>
+                    <div>
+                      {totalPrice.toLocaleString('en-PK', {
+                        style: 'currency',
+                        currency: 'PKR',
+                      })}
+                    </div>
                   </div>
                 </li>
 
