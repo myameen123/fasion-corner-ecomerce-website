@@ -7,16 +7,16 @@ import productServices from '@/lib/services/productService';
 const sortOrders = ['newest', 'lowest', 'highest', 'rating'];
 const prices = [
   {
-    name: '$1 to $50',
-    value: '1-50',
+    name: 'Rs 1,000.00 to Rs 3,000.00',
+    value: '1000-3000',
   },
   {
-    name: '$51 to $200',
-    value: '51-200',
+    name: 'Rs 3,000.00 to Rs 5,000.00',
+    value: '3000-5000',
   },
   {
-    name: '$201 to $1000',
-    value: '201-1000',
+    name: 'Rs 5,000.00 to Rs 10,000.00',
+    value: '5000-10000',
   },
 ];
 
