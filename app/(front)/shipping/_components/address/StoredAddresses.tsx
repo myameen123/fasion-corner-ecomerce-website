@@ -5,9 +5,6 @@ import { useCheckout } from '@/components/contexts/CheckoutContext';
 import AddressCard from './AddressCard';
 import AddressForm from './addressForm';
 
-// import AddressCard from './AddressCard';
-// import AddressForm from './AddressForm';
-
 const ADDRESSES = [
   {
     fullName: 'Muhammad Yameen',
@@ -16,6 +13,7 @@ const ADDRESSES = [
     postalCode: '41000',
     city: 'Islamabad',
     country: 'pakistan',
+    checked: true,
   },
   {
     fullName: 'Muhammad Yameen',
@@ -25,16 +23,22 @@ const ADDRESSES = [
     postalCode: '21350',
     city: 'Larkana',
     country: 'pakistan',
+    checked: false,
   },
 ];
 
 function StoredAddresses() {
   const { nextStep, prevStep } = useCheckout();
-  const [selectedAddress, setSelectedAddress] = useState<string | null>(null);
+
+  // Initialize selectedAddress with the one that is checked: true
+  const [selectedAddress, setSelectedAddress] = useState<string>(
+    ADDRESSES.find((a) => a.checked)?.address || '',
+  );
+
   const [editingAddress, setEditingAddress] = useState<any | null>(null); // To store the address being edited
 
   const handleAddressSelect = (address: string) => {
-    setSelectedAddress(address);
+    setSelectedAddress(address); // Select only one address at a time
   };
 
   const handleEditAddress = (address: any) => {
@@ -63,7 +67,7 @@ function StoredAddresses() {
               email={a.email}
               address={a.address}
               postalCode={a.postalCode}
-              isSelected={selectedAddress === a.address}
+              isSelected={selectedAddress === a.address} // This handles selection
               onSelect={() => handleAddressSelect(a.address)}
               onEdit={() => handleEditAddress(a)} // Pass the address to the edit handler
             />
