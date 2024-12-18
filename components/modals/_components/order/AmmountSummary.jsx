@@ -16,14 +16,14 @@ function AmmountSummary() {
       <div className=' flex justify-between border-b'>
         <div className='flex flex-col p-2'>
           <span>MRP Total</span>
-          <span>Discount on MRP</span>
+          <span>Discount</span>
           <span>Subtotal</span>
           <span>Shipping</span>
         </div>
         <div className={`flex flex-col ${styles['item-end']}`}>
-          <span>{calculatFormattedPrice(5000)}</span>
-          <span>{calculatFormattedPrice(1500)}</span>
-          <span>{calculatFormattedPrice(3500)}</span>
+          <span>{calculatFormattedPrice(4599)}</span>
+          <span>{calculatFormattedPrice(800)}</span>
+          <span>{calculatFormattedPrice(3699)}</span>
           <span>To be calculated</span>
         </div>
       </div>

@@ -39,7 +39,7 @@ function ModalLayout({
     goToStep,
   } = useCheckout();
 
-  const price = 5000;
+  const price = 3699;
   const formattedPrice = price.toLocaleString('en-PK', {
     style: 'currency',
     currency: 'PKR',

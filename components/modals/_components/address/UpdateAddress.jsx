@@ -1,28 +1,13 @@
 /* eslint-disable import/order */
 'use client';
 import React, { useEffect } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useCustomer } from '@/components/contexts/CustomerContext';
 import { useCheckout } from '@/components/contexts/CheckoutContext';
 import { TextField } from '@mui/material';
 import toast from 'react-hot-toast';
 
-type AddressFormValues = {
-  _id: string;
-  postalCode: string;
-  city: string;
-  state: string;
-  fullName: string;
-  email: string;
-  fullAddress: string;
-  addressType: 'Work' | 'Home';
-};
-
-type UpdateAddressProps = {
-  addressIdToEdit: string;
-};
-
-const UpdateAddress: React.FC<UpdateAddressProps> = () => {
+const UpdateAddress = () => {
   const { customer, setCustomer } = useCustomer();
   const { setIsLoading, goToSubStep, addressIdToEdit, setAddressIdToEdit } =
     useCheckout();
@@ -32,7 +17,7 @@ const UpdateAddress: React.FC<UpdateAddressProps> = () => {
     setValue,
     watch,
     formState: { errors },
-  } = useForm<AddressFormValues>();
+  } = useForm();
 
   useEffect(() => {
     if (customer && customer.addresses && customer.addresses.length <= 0) {
@@ -58,7 +43,7 @@ const UpdateAddress: React.FC<UpdateAddressProps> = () => {
     }
   }, [addressIdToEdit, customer?.addresses, setValue]);
 
-  const onSubmit: SubmitHandler<AddressFormValues> = async (data) => {
+  const onSubmit = async (data) => {
     if (!customer || !customer.phoneNumber) {
       toast.error('Customer information is missing.');
       return;

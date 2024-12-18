@@ -13,7 +13,7 @@ const PaymentMethods = [
   {
     id: '1',
     type: 'Dabit/Credit Cards',
-    price: 4999,
+    price: 3699,
     isExtra: false,
     isDiscount: false,
     discount: 0,
@@ -53,7 +53,7 @@ const PaymentMethods = [
   {
     id: '3',
     type: 'Cash On Delivery',
-    price: 5200,
+    price: 4005,
     isExtra: true,
     isDiscount: false,
     discount: 0,

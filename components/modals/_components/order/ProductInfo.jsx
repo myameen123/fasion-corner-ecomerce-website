@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 function ProductInfo() {
-  const price = 5000;
+  const price = 4999;
   const formattedPrice = price.toLocaleString('en-PK', {
     style: 'currency',
     currency: 'PKR',
@@ -26,7 +26,7 @@ function ProductInfo() {
         </div>
         <div>
           <span>Quantity: </span>
-          <span>3</span>
+          <span>1</span>
         </div>
       </div>
     </div>
