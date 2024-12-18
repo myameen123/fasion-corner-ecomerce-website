@@ -4,13 +4,8 @@ import React, { useEffect } from 'react';
 import { useCheckout } from '@/components/contexts/CheckoutContext';
 import { useCustomer } from '@/components/contexts/CustomerContext';
 import DeliveryCard from './DeliveryCard';
-import cashLogo from '@/public/images/cash.png';
-import easypaisaLogo from '@/public/images/easypaisa.png';
-import jazzcashLogo from '@/public/images/jasscash.png';
-import masterLogo from '@/public/images/masterCard.png';
-import visaLogo from '@/public/images/visa_icon.png';
+
 import PaymentMethod from './PaymentMethod';
-import CardModel from './CardModel';
 
 // import PaymentMethodCard from './PaymentMethod';
 
