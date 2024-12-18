@@ -63,7 +63,8 @@ const AddressForm: React.FC = () => {
           }
           setIsPostalCodeValid(true);
         })
-        .catch(() => {
+        .catch((e) => {
+          console.log(e);
           setIsPostalCodeValid(false);
           alert('Could not fetch city/state for the given postal code.');
         })
