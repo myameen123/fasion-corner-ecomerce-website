@@ -31,7 +31,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "components/modals/QuickCartModal.jsx"  ],
   "exclude": [
     "node_modules"
   ]

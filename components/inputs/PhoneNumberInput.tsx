@@ -33,21 +33,38 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
       return null;
     }
   };
-
+  // Custom validation for the phone number
+  const validateCustomRules = (number: string) => {
+    if (number.length > 0) {
+      if (number[0] === '0' && number[1] !== '3') {
+        setHelperText('Please enter valid Pakistani phone number.');
+        return false;
+      }
+      if (number[0] !== '0' && number[0] !== '3') {
+        setHelperText('Please enter valid Pakistani phone number.');
+        return false;
+      }
+    }
+    return true;
+  };
   // Handle validation when value changes, but only show error if the input is touched
   useEffect(() => {
-    const isValid = isValidPhoneNumber(value || '', defaultCountry);
+    const isValidNumber = isValidPhoneNumber(value || '', defaultCountry);
+    const isCustomValid = validateCustomRules(value);
+
     if (onValidation) {
-      onValidation(isValid);
+      onValidation(isValidNumber && isCustomValid);
     }
 
     if (isTouched) {
       if (required && !value) {
         setError(true);
         setHelperText('This field is required');
-      } else if (!isValid && value) {
+      } else if (!isValidNumber && value) {
         setError(true);
         setHelperText('Invalid phone number');
+      } else if (!isCustomValid) {
+        setError(true); // Error already set by `validateCustomRules`
       } else {
         setError(false);
         setHelperText('');
@@ -70,12 +87,17 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setDisplayValue(e.target.value);
     onChange(e.target.value); // Trigger parent's onChange
+    // console.log(`+92${e.target.value}`);
   };
 
   return (
-    <div className='form-control w-full'>
-      <div className='flex gap-2'>
-        <button type='button' className='btn gap-0 border p-2' disabled>
+    <div className='form-control'>
+      <div className='flex justify-center gap-2'>
+        <button
+          type='button'
+          className='btn gap-0 border bg-white p-2 hover:bg-white'
+          // disabled
+        >
           <Image
             width={20}
             height={20}
@@ -87,7 +109,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
         <input
           type='text'
           placeholder='03105689647'
-          className={`input input-bordered w-full ${error ? 'input-error' : ''}`}
+          className={`input input-bordered border-black  bg-white focus:border-black ${error ? 'input-error' : ''}`}
           value={displayValue}
           onFocus={() => setFocused(true)}
           onChange={handleChange}
@@ -96,7 +118,9 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
         />
       </div>
       {isTouched && helperText && (
-        <span className='text-sm text-red-500'>{helperText}</span>
+        <span className='mt-2 text-center text-sm text-red-500'>
+          {helperText}
+        </span>
       )}
     </div>
   );

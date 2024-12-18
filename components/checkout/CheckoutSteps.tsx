@@ -1,6 +1,6 @@
 const CheckoutSteps = ({ current = 0 }) => {
   return (
-    <ul className='steps  steps-horizontal mt-4 w-full'>
+    <ul className='steps  steps-horizontal'>
       {['Mobile', 'Address', 'Payment'].map((step, index) => (
         <li
           key={step}

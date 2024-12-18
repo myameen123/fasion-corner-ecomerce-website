@@ -5,12 +5,22 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import QuickCartModal from '@/components/modals/QuickCartModal';
 import useCartService from '@/lib/hooks/useCartStore';
 
 const CartDetails = () => {
   const { items, itemsPrice, decrease, increase } = useCartService();
+  const [openModal, setOpenModal] = useState(false);
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
+
+  const onClickHandler = () => {
+    setOpenModal(true);
+  };
+
+  const onClose = () => {
+    setOpenModal(false);
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -93,10 +103,12 @@ const CartDetails = () => {
                   <button
                     type='button'
                     className='btn btn-primary w-full'
-                    onClick={() => router.push('/shipping')}
+                    // onClick={() => router.push('/shipping')}
+                    onClick={onClickHandler}
                   >
                     Proceed to Checkout
                   </button>
+                  <QuickCartModal onClose={onClose} open={openModal} />
                 </li>
               </ul>
             </div>
