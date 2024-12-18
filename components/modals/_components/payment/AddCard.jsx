@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 import React from 'react';
 import DeliveryTime from './DeliveryTime';
 import { MoveLeft, Plus } from 'lucide-react';

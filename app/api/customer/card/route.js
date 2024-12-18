@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 import { NextResponse } from 'next/server';
 import CustomerModel from '@/lib/models/CustomerModel';
 import dbConnect from '@/lib/dbConnect';
