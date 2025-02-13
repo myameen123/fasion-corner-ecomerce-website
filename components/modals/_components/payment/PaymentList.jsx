@@ -15,8 +15,9 @@ const PaymentMethods = [
     type: 'Dabit/Credit Cards',
     price: 3699,
     isExtra: false,
-    isDiscount: false,
-    discount: 0,
+    isDiscount: true,
+    message:"Extra 15% discount + cashback",
+    discount: 15,
     extraCharges: 0,
 
     methods: [
@@ -34,6 +35,7 @@ const PaymentMethods = [
     id: '2',
     type: 'Wallets',
     price: 3750,
+    message:"Get cashback",
     isDiscount: true,
     discount: 15,
     isExtra: false,
@@ -55,6 +57,7 @@ const PaymentMethods = [
     type: 'Cash On Delivery',
     price: 4005,
     isExtra: true,
+    message:"Rs 200 COD fee added",
     isDiscount: false,
     discount: 0,
     extraCharges: 200,
@@ -114,10 +117,10 @@ function PaymentList() {
   return (
     <div className='mt-4 flex flex-col gap-4'>
       <div className='flex items-center gap-2'>
-        <p>Hey! Welcome back +92{customer.phoneNumber}</p>
+        <p className=' text-sm'>Hey! Welcome back +92{customer.phoneNumber}</p>
         <button
           onClick={onEdit}
-          className='rounded-full bg-slate-200 px-4 py-[2px] text-sm text-blue-900'
+          className='rounded-full bg-slate-200 px-3 py-[2px] text-xs text-blue-900'
         >
           Edit
         </button>
@@ -141,9 +144,11 @@ function PaymentList() {
             type={p.type}
             price={p.price}
             methods={p.methods}
+            id ={p.id}
             isDiscount={p.isDiscount}
             isExtra={p.isExtra}
             discount={p.discount}
+            message = {p.message}
             extraCharges={p.extraCharges}
             onClick={() => handlePaymentClick(p.id)}
           />

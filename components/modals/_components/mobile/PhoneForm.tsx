@@ -108,7 +108,7 @@ const PhoneForm = () => {
 
   return (
     <div className='mt-4 flex flex-col items-center gap-4'>
-      <p className=' text-lg font-semibold'>Enter Your Mobile Number</p>
+      <p className=' text-lg text-blue-950'>Enter Mobile Number</p>
 
       {!confirmationResult && (
         <>

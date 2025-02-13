@@ -140,10 +140,10 @@ function ModalLayout({
                 <AccordionTrigger>
                   <div className=' flex w-full items-center justify-between px-4'>
                     <div className='flex items-center justify-center gap-2'>
-                      <ShoppingCart />
-                      <span>Order Summary</span>
+                      <ShoppingCart size={20}/>
+                      <span className='text-sm'>Order Summary</span>
                     </div>
-                    <span>{formattedPrice}</span>
+                    <span className='text-sm'>{formattedPrice}</span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
@@ -152,7 +152,7 @@ function ModalLayout({
               </AccordionItem>
             </Accordion>
             <div className='flex flex-1 items-center justify-between rounded-lg bg-white p-4 font-medium'>
-              <p className='font-semibold'>Login to Redeem Loyalty Points</p>
+              <p className='font-semibold text-sm'>Login to Redeem Loyalty Points</p>
             </div>
           </div>
           {children}

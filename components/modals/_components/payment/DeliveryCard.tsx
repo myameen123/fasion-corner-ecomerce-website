@@ -33,7 +33,7 @@ function DeliveryCard({
     goToSubStep(1, 1);
   };
   return (
-    <div className='card flex w-full cursor-pointer flex-row items-start border-2 border-black bg-white p-4 text-sm shadow-inner'>
+    <div className='card flex w-full cursor-pointer flex-row items-start border-[1px] border-gray-300 bg-white p-4 text-sm shadow-inner'>
       <div className='w-full'>
         <div className=' mb-4 flex justify-between'>
           <p className=' text-lg'>
@@ -62,7 +62,7 @@ function DeliveryCard({
         <p className='mb-4'>
           {address}, {city}, {state}, {postalCode}
         </p>
-        <p className='text-xs text-gray-600'>{email}</p>
+        <p className='rounded-full bg-slate-200 px-4 py-[2px] text-sm text-blue-900 w-fit'>{email}</p>
       </div>
     </div>
   );

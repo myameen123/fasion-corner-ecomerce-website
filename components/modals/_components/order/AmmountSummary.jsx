@@ -13,7 +13,7 @@ function AmmountSummary() {
   };
   return (
     <div>
-      <div className=' flex justify-between border-b'>
+      <div className=' flex justify-between border-b text-base'>
         <div className='flex flex-col p-2'>
           <span>MRP Total</span>
           <span>Discount</span>
@@ -27,7 +27,7 @@ function AmmountSummary() {
           <span>To be calculated</span>
         </div>
       </div>
-      <div className='mt-3 flex justify-between p-2 font-bold'>
+      <div className='mt-3 flex justify-between p-3 font-bold border-y'>
         <span>To Pay</span>
         <span>{calculatFormattedPrice(3500)}</span>
       </div>

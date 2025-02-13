@@ -31,7 +31,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "components/modals/QuickCartModal.jsx"  ],
+, "components/modals/QuickCartModal.jsx", "components/modals/_components/address/UpdateAddress.jsx", "components/modals/_components/payment/DebitCardForm.jsx", "components/modals/_components/address/Address.jsx", "app/api/customer/route.js", "app/api/customer/route.js", "app/api/customer/route.js"  ],
   "exclude": [
     "node_modules"
   ]

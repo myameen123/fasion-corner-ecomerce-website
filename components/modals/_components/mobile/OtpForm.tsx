@@ -176,7 +176,7 @@ const OtpForm = () => {
           fontSize: '1.25rem',
           outline: 'none',
         }}
-        containerStyle='flex justify-center gap-3 mb-4'
+        containerStyle='flex justify-center gap-3'
       />
       <div className='mx-auto'>
         {resendCountdown > 0 ? (
