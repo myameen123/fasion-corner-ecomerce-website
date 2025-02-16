@@ -106,3 +106,33 @@
 .confirm-btn{
   color: white;
 }
+
+/* Hide number input spinner buttons in WebKit browsers (Chrome, Safari) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide number input spinner buttons in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* .cross-btn{
+
+    padding: 2px;
+} */
+.cross-btn{
+  transition: all;
+    padding: 5px;
+}
+.cross-btn:hover{
+    background-color: rgb(246, 244, 244);
+    border-radius: 100%;
+    /* padding: 3px; */
+}
+
+/* .debit-card{
+  border-color: yellow                                                                                                                                    ;
+} */

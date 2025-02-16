@@ -54,7 +54,7 @@ function ModalLayout({
   //   setSubSteps({ [1]: 0 });
   // };
   return (
-    <Modal open={open} onClose={onClose} sx={{ zIndex: 1000 }}>
+    <Modal open={open} onClose={onClose} sx={{ zIndex: 10 }}>
       <Paper
         className='modal-content-container'
         style={{

@@ -20,7 +20,7 @@ import ConfirmOrder from './_components/payment/ConfirmOrder';
 import OrderConfirmed from './_components/order/OrderConfirmed';
 import AddressForm from './_components/address/addressForm';
 import DebitCardForm from './_components/payment/DebitCardForm';
-
+import CardList from "./_components/payment/CardList"
 function QuickCartModal({ onClose, open }) {
   return (
     <CheckoutProvider>
@@ -68,6 +68,8 @@ const QuickCartContent = ({ onClose, open }) => {
             return <DebitCardForm />;
           case 3:
             return <ConfirmOrder />;
+          case 4:
+            return <CardList />;
           default:
             return null;
         }

@@ -2,6 +2,7 @@
 import { NextResponse } from 'next/server';
 import CustomerModel from '@/lib/models/CustomerModel';
 import dbConnect from '@/lib/dbConnect';
+import { getCardType } from '@/lib/cardValidator';
 
 export async function POST(req) {
   try {
@@ -10,7 +11,6 @@ export async function POST(req) {
 
     // Parse the request body
     const { phoneNumber, cardDetails } = await req.json();
-    console.log(cardDetails);
 
     if (!phoneNumber || !cardDetails) {
       return NextResponse.json(
@@ -19,6 +19,18 @@ export async function POST(req) {
       );
     }
 
+    // Determine card type
+    const cardType = getCardType(cardDetails.cardNumber);
+
+    if (cardType === 'Invalid') {
+      // console.log("wrong")
+      return NextResponse.json(
+        { message: 'Invalid card number. Only Visa and MasterCard are accepted.' },
+        { status: 400 },
+      );
+    }
+    console.log("card details...",cardDetails)
+    console.log("cardType", cardType)
     // Find the customer by phone number
     const customer = await CustomerModel.findOne({ phoneNumber });
 
@@ -29,21 +41,13 @@ export async function POST(req) {
       );
     }
 
-    // // Validate if card number already exists for the customer
-    // const existingCard = customer.paymentMethods.find(
-    //   (method) =>
-    //     method.type === 'debit/credit card' &&
-    //     method.cardDetails?.cardNumber === cardDetails.cardNumber,
-    // );
+    // Update all existing payment methods to isSelected: false
+    customer.paymentMethods = customer.paymentMethods.map((method) => ({
+      ...method.toObject(),
+      isSelected: false,
+    }));
 
-    // if (existingCard) {
-    //   return NextResponse.json(
-    //     { message: 'Card already exists.' },
-    //     { status: 400 },
-    //   );
-    // }
-
-    // Add the new card details to paymentMethods
+    // Add the new card details with detected card type and isSelected: true
     customer.paymentMethods.push({
       type: 'debit/credit card',
       cardDetails: {
@@ -51,8 +55,11 @@ export async function POST(req) {
         cardNumber: cardDetails.cardNumber,
         expiryDate: cardDetails.expiryDate,
         cvc: cardDetails.cvc,
+        cardType: cardType || 'Visa', // Default fallback to Visa (if somehow undefined)
       },
+      isSelected: true,
     });
+    
 
     // Save the updated customer
     await customer.save();
@@ -65,6 +72,51 @@ export async function POST(req) {
     console.error('Error in adding card details:', error);
     return NextResponse.json(
       { message: 'Internal Server Error.' },
+      { status: 500 },
+    );
+  }
+}
+
+export async function PUT(req) {
+  try {
+    const { phoneNumber, paymentMethodId } = await req.json();
+
+    if (!phoneNumber || !paymentMethodId) {
+      return NextResponse.json(
+        {
+          message: 'Phone number and payment method ID are required.',
+        },
+        { status: 400 },
+      );
+    }
+
+    const customer = await CustomerModel.findOne({ phoneNumber });
+
+    if (!customer) {
+      return NextResponse.json(
+        { message: 'Customer not found.' },
+        { status: 404 },
+      );
+    }
+
+    // Update isSelected for the selected payment method and reset others
+    customer.paymentMethods = customer.paymentMethods.map(
+      (method) =>
+        method._id.toString() === paymentMethodId
+          ? { ...method.toObject(), isSelected: true } // Set selected method
+          : { ...method.toObject(), isSelected: false }, // Reset others
+    );
+
+    await customer.save();
+
+    return NextResponse.json(
+      { message: 'Payment method updated successfully.', data: customer },
+      { status: 200 },
+    );
+  } catch (error) {
+    console.error('Error updating payment method:', error);
+    return NextResponse.json(
+      { message: 'Internal server error.' },
       { status: 500 },
     );
   }

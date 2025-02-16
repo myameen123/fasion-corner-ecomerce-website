@@ -9,15 +9,16 @@ const AddressSchema = new Schema({
   email: { type: String, required: true },
   fullAddress: { type: String, required: true },
   addressType: { type: String, enum: ['Work', 'Home'], required: true },
-  isSelected: { type: Boolean, default: false }, // Optional field with default value
+  isSelected: { type: Boolean, default: false },
 });
 
-// Card Payment Schema
+// Card Payment Schema (Updated)
 const CardPaymentSchema = new Schema({
   fullName: { type: String, required: true },
   cardNumber: { type: String, required: true },
   expiryDate: { type: String, required: true }, // Format: MM/YY
   cvc: { type: String, required: true },
+  cardType: { type: String, enum: ['Visa', 'MasterCard'], required: true }, // New field
 });
 
 // Wallet Payment Schema
@@ -31,6 +32,7 @@ const PaymentSchema = new Schema({
   type: { type: String, enum: ['debit/credit card', 'wallet'], required: true },
   cardDetails: { type: CardPaymentSchema, required: false },
   walletDetails: { type: WalletPaymentSchema, required: false },
+  isSelected: { type: Boolean, default: false },
 });
 
 // Customer Schema Interface
@@ -44,7 +46,7 @@ export interface ICustomer extends Document {
     email: string;
     fullAddress: string;
     addressType: 'Work' | 'Home';
-    isSelected?: boolean; // Optional field
+    isSelected?: boolean;
   }>;
   paymentMethods: Array<{
     type: 'debit/credit card' | 'wallet';
@@ -53,11 +55,13 @@ export interface ICustomer extends Document {
       cardNumber: string;
       expiryDate: string;
       cvc: string;
+      cardType: 'Visa' | 'MasterCard';
     };
     walletDetails?: {
       phoneNumber: string;
       franchise: 'JazzCash' | 'EasyPaisa';
     };
+    isSelected?: boolean;
   }>;
 }
 
