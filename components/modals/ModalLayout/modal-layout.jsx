@@ -17,6 +17,7 @@ import pciImage from '@/public/images/cart/pci_certified.png';
 import securePaymentImage from '@/public/images/cart/secure_payment.png';
 import verifiedMerchantImage from '@/public/images/cart/verfied_merchant.png';
 import { useCheckout } from '@/components/contexts/CheckoutContext';
+import useCartService from '@/lib/hooks/useCartStore';
 import { useState } from 'react';
 
 function ModalLayout({
@@ -39,8 +40,14 @@ function ModalLayout({
     goToStep,
   } = useCheckout();
 
-  const price = 3699;
-  const formattedPrice = price.toLocaleString('en-PK', {
+
+  const { itemsPrice} = useCartService();
+
+  const discount = 500;
+  const subtotal = itemsPrice-discount
+  const totalPrice = subtotal 
+  // const price = 3699;
+  const formattedPrice = totalPrice.toLocaleString('en-PK', {
     style: 'currency',
     currency: 'PKR',
   });
@@ -53,6 +60,8 @@ function ModalLayout({
   //   setStep(1);
   //   setSubSteps({ [1]: 0 });
   // };
+  // console.log(totalPrice, itemsPrice)
+  
   return (
     <Modal open={open} onClose={onClose} sx={{ zIndex: 10 }}>
       <Paper

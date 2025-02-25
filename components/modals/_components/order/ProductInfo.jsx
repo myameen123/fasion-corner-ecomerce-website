@@ -1,8 +1,15 @@
 import Image from 'next/image';
 import React from 'react';
 
-function ProductInfo() {
-  const price = 4999;
+function ProductInfo(
+{  name,
+  description,
+  qty,
+  price,
+  color,
+  image}
+) {
+  // const price = 4999;
   const formattedPrice = price.toLocaleString('en-PK', {
     style: 'currency',
     currency: 'PKR',
@@ -10,13 +17,12 @@ function ProductInfo() {
   return (
     <div className=' my-4 flex items-center gap-2 border-b p-2'>
       <div>
-        <Image src='/images/shirt.png' alt='shirt' width={220} height={220} />
+        <Image src={image} alt='shirt' width={150} height={150} />
       </div>
       <div className=' flex-col gap-1 text-sm '>
         <div className=' flex gap-2'>
           <p>
-            Simple yet striking, this black T-shirt is a wardrobe staple,
-            featuring a modern cut and super-soft fabric <span>- Black</span>
+            {name} | {description} - {color}
           </p>
         </div>
         <div className=' flex gap-1'>
@@ -25,8 +31,8 @@ function ProductInfo() {
           {/* <span>discount</span>s */}
         </div>
         <div>
-          <span>Quantity: </span>
-          <span>1</span>
+          <span>Quantity: {qty}</span>
+          {/* <span></span> */}
         </div>
       </div>
     </div>

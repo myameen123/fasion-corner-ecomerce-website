@@ -2,7 +2,10 @@ import React from 'react';
 
 import styles from './style.module.css';
 
-function AmmountSummary() {
+function AmmountSummary({itemsPrice}) {
+  const discount = 500;
+  const subtotal = itemsPrice-discount
+  const totalPrice = subtotal 
   const calculatFormattedPrice = (price) => {
     const formattedPrice = price.toLocaleString('en-PK', {
       style: 'currency',
@@ -21,15 +24,15 @@ function AmmountSummary() {
           <span>Shipping</span>
         </div>
         <div className={`flex flex-col ${styles['item-end']}`}>
-          <span>{calculatFormattedPrice(4599)}</span>
-          <span>{calculatFormattedPrice(800)}</span>
-          <span>{calculatFormattedPrice(3699)}</span>
+          <span>{calculatFormattedPrice(itemsPrice)}</span>
+          <span>{calculatFormattedPrice(discount)}</span>
+          <span>{calculatFormattedPrice(subtotal)}</span>
           <span>To be calculated</span>
         </div>
       </div>
       <div className='mt-3 flex justify-between p-3 font-bold border-y'>
         <span>To Pay</span>
-        <span>{calculatFormattedPrice(3500)}</span>
+        <span>{calculatFormattedPrice(totalPrice)}</span>
       </div>
     </div>
   );
