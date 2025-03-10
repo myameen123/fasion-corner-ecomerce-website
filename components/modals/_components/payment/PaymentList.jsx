@@ -107,7 +107,8 @@ function PaymentList() {
     } else if (paymentId === '2') {
       goToSubStep(2, 2);
     } else if (paymentId === '3') {
-      goToSubStep(2, 3);
+      customer.status==="low"? goToStep(3): goToSubStep(2, 3)
+     
     }
   };
 

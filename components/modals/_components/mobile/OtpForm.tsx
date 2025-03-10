@@ -10,12 +10,13 @@ import toast from 'react-hot-toast';
 import { SquarePen } from 'lucide-react';
 
 const OtpForm = () => {
-  const [otp, setOtp] = useState('');
+  const [userOtp, setUserOtp] = useState('');
   const {
     nextStep,
     setButtonDisabled,
     setOnContinue,
     mobile,
+    otp,
     goToStep,
     setIsLoading,
     confirmationResult,
@@ -45,12 +46,12 @@ const OtpForm = () => {
   }, [isValid]);
 
   useEffect(() => {
-    if (otp.length === 4) {
+    if (userOtp.length === 4) {
       setIsValid(true);
     } else {
       setIsValid(false);
     }
-  }, [otp]);
+  }, [userOtp]);
 
   useEffect(() => {
     if (isValid) {
@@ -59,46 +60,19 @@ const OtpForm = () => {
       verifyOtp();
     }
   }, [isValid]); // Depend on the function state
+
+  const getCustomerStatus = () => {
+    const randomValue = Math.random(); // Generate a number between 0 and 1
+
+    if (randomValue >= 0.7) return "high"; // High for values close to 1
+    if (randomValue >= 0.3) return "medium"; // Medium for values in between
+    return "low"; // Low for values close to 0
+};
+
   const verifyOtp = async () => {
     setIsLoading(true);
-    // const verifyOtp = async () => {
-    //   setIsLoading(true);
-
-    //   if (otp === '3563') {
-    //     try {
-    //       const response = await fetch('/api/customer', {
-    //         method: 'POST',
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({ phoneNumber: mobile }),
-    //       });
-
-    //       const data = await response.json();
-
-    //       if (response.ok) {
-    //         toast.success(data.message);
-
-    //         // Save customer data in context
-
-    //         setCustomer(data.data); // Store customer info
-
-    //         nextStep(); // Proceed to next step
-    //       } else {
-    //         toast.error(data.message || 'Failed to process customer');
-    //       }
-    //     } catch (error) {
-    //       console.error('Error verifying OTP:', error);
-    //       toast.error('Something went wrong. Please try again.');
-    //     } finally {
-    //       setIsLoading(false);
-    //     }
-    //   } else {
-    //     toast.error('Invalid OTP.');
-    //     setIsLoading(false);
-    //   }
-    // };
-    if (otp === '3563') {
+    // if (userOtp === "1234") {
+    if (userOtp === otp) {
       try {
         const response = await fetch('/api/customer', {
           method: 'POST',
@@ -113,8 +87,11 @@ const OtpForm = () => {
         if (response.ok) {
           // toast.success(data.message);
 
+        const returnedCustomer = { ...data.data, status: "low" };
+        // const returnedCustomer = { ...data.data, status: getCustomerStatus() };
+
           // Save customer data in context
-          setCustomer(data.data); // Store customer info
+          setCustomer(returnedCustomer);
           if (data.data.addresses.length > 0) {
             goToStep(2);
           } else {
@@ -156,8 +133,8 @@ const OtpForm = () => {
         </div>
       </div>
       <OtpInput
-        value={otp}
-        onChange={setOtp}
+        value={userOtp}
+        onChange={setUserOtp}
         numInputs={4}
         renderSeparator={<span>-</span>}
         renderInput={(props) => (

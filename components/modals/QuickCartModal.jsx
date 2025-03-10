@@ -3,6 +3,8 @@
 // QuickCartModal.tsx
 
 import React, { useEffect } from 'react';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import ModalLayout from './ModalLayout/modal-layout';
 import { CheckoutProvider, useCheckout } from '../contexts/CheckoutContext';
 import {
@@ -21,6 +23,9 @@ import OrderConfirmed from './_components/order/OrderConfirmed';
 import AddressForm from './_components/address/addressForm';
 import DebitCardForm from './_components/payment/DebitCardForm';
 import CardList from "./_components/payment/CardList"
+
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 function QuickCartModal({ onClose, open }) {
   return (
     <CheckoutProvider>
@@ -82,7 +87,9 @@ const QuickCartContent = ({ onClose, open }) => {
 
   return (
     <ModalLayout onClose={onClose} open={open} activeStep={step}>
+       <Elements stripe={stripePromise}>
       {renderSubStepComponent()}
+       </Elements>
     </ModalLayout>
   );
 };

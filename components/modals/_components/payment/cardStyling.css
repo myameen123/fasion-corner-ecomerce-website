@@ -4,7 +4,6 @@
   background-color: black;
   position: relative;
   border-radius: 8px ;
-  
   /* background-color: #01b156; */
 }
 
@@ -90,10 +89,16 @@
 .paymentCard[data-id="3"] .old-ui-discount-badge .badge-content,
 .paymentCard[data-id="3"] .old-ui-discount-badge .right {
   background: red !important;
+  
 }
 
 .paymentCard[data-id="1"] {
   background-color: #01b156 !important;
+}
+.paymentCard[data-id="3"][data-status="high"] {
+  background-color: gray !important;
+  pointer-events: none; /* Disables click events */
+  opacity: 0.6; 
 }
 
 
@@ -136,3 +141,17 @@ input[type="number"] {
 /* .debit-card{
   border-color: yellow                                                                                                                                    ;
 } */
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  /* border: 2px solid white; */
+  /* border-top-color: transparent; */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}

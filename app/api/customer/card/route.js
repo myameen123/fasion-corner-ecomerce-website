@@ -79,9 +79,9 @@ export async function POST(req) {
 
 export async function PUT(req) {
   try {
-    const { phoneNumber, paymentMethodId } = await req.json();
+    const { phoneNumber, stripePaymentMethodId } = await req.json();
 
-    if (!phoneNumber || !paymentMethodId) {
+    if (!phoneNumber || !stripePaymentMethodId) {
       return NextResponse.json(
         {
           message: 'Phone number and payment method ID are required.',
@@ -102,7 +102,7 @@ export async function PUT(req) {
     // Update isSelected for the selected payment method and reset others
     customer.paymentMethods = customer.paymentMethods.map(
       (method) =>
-        method._id.toString() === paymentMethodId
+        method.stripePaymentMethodId.toString() === stripePaymentMethodId
           ? { ...method.toObject(), isSelected: true } // Set selected method
           : { ...method.toObject(), isSelected: false }, // Reset others
     );

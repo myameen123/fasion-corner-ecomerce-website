@@ -21,6 +21,7 @@ function AddressesList() {
     setIsLoading(false);
     setButtonDisabled(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, []); // Empty dependency array
 
   useEffect(() => {
@@ -82,6 +83,7 @@ function AddressesList() {
   const onEdit = () => {
     goToStep(0);
   };
+  console.log("customer....",customer)
   return (
     <div className=' mt-4 flex flex-col gap-2'>
       <div className='my-4 flex items-center gap-2'>

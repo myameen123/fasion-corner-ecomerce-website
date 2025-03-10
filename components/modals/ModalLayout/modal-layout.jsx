@@ -160,7 +160,7 @@ function ModalLayout({
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
-            <div className='flex flex-1 items-center justify-between rounded-lg bg-white p-4 font-medium'>
+            <div className='flex flex-1 mb-2 items-center justify-between rounded-lg bg-white p-4 font-medium'>
               <p className='font-semibold text-sm'>Login to Redeem Loyalty Points</p>
             </div>
           </div>

@@ -1,6 +1,8 @@
+/* eslint-disable import/order */
 import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
+import { useCustomer } from '@/components/contexts/CustomerContext';
 import './cardStyling.css';
 const PaymentMethod = ({
   type,
@@ -15,6 +17,7 @@ const PaymentMethod = ({
   onClick,
   //   onSelect,
 }) => {
+  const { customer } = useCustomer();
   const formattedPrice = price.toLocaleString('en-PK', {
     style: 'currency',
     currency: 'PKR',
@@ -24,6 +27,8 @@ const PaymentMethod = ({
       className={` paymentCard mb-4 cursor-pointer flex-row justify-between p-3 text-white shadow-inner relative`}
       onClick={onClick}
       data-id={id}
+      data-status={customer.status}
+
     >
         <div className='flex justify-between w-full'>
           <div className=' flex flex-col gap-1'>
@@ -39,17 +44,28 @@ const PaymentMethod = ({
             <ChevronRight />
           </div>
         </div>
-        <div className='old-ui-discount-badge'>
+        {/* <div className='old-ui-discount-badge'>
               <div className='left'></div>
               <div className='badge-content'>
                 <span className='badge-text'>
                   {id=="1"&&message}
                   {id=="2"&&message}
-                  {id=="3"&&message}
+                  {id=="3"&&message}  
                 </span>
               </div>
               <div className='right others'></div>
-        </div>
+        </div> */}
+        {!(id === "3" && customer.status === "high") && (
+            <div className='old-ui-discount-badge'>
+              <div className='left'></div>
+              <div className='badge-content'>
+                <span className='badge-text'>
+                  {message}
+                </span>
+              </div>
+              <div className='right others'></div>
+            </div>
+        )}
     </div>
   );
 };

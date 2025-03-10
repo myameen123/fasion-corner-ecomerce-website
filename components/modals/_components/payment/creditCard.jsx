@@ -26,14 +26,14 @@ function CreditCard({card, onSelect}) {
       />
     <div className='flex items-center gap-4 w-full'>
       <Image
-        src={`${card.cardDetails.cardType==="Visa"?"/visa.svg":"/master_card.svg"}`}
+        src={`${card.brand==="visa"?"/visa.svg":"/master_card.svg"}`}
         className=''
         alt='logo'
         width={60}
         height={60}
       />
       <p className=' w-full   '>
-        {card.cardDetails.cardType || 'Card'} &#8226;&#8226;&#8226;&#8226;  {card.cardDetails?.cardNumber?.slice(-4)}
+        {card.brand || 'Card'} &#8226;&#8226;&#8226;&#8226;  {card.last4}
       </p>
     </div>
     <AlertDialog>

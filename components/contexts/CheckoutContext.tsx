@@ -6,7 +6,9 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 type CheckoutContextType = {
   step: number;
   mobile: string;
+  otp: string;
   setMobile: React.Dispatch<React.SetStateAction<string>>;
+  setOtp: React.Dispatch<React.SetStateAction<string>>;
   addressIdToEdit: string;
   setAddressIdToEdit: React.Dispatch<React.SetStateAction<string>>;
   subSteps: SubStepsType;
@@ -42,6 +44,7 @@ const CheckoutContext = createContext<CheckoutContextType | undefined>(
 export const CheckoutProvider = ({ children }: { children: ReactNode }) => {
   const [step, setStep] = useState(0);
   const [mobile, setMobile] = useState('');
+  const [otp, setOtp] = useState('');
   const [addressIdToEdit, setAddressIdToEdit] = useState('');
   const [subSteps, setSubSteps] = useState<SubStepsType>({
     0: 0,
@@ -103,6 +106,8 @@ export const CheckoutProvider = ({ children }: { children: ReactNode }) => {
         setStep,
         mobile,
         setMobile,
+        otp,
+        setOtp,
         goToStep,
         goToSubStep,
         confirmationResult,

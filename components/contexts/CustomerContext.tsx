@@ -12,6 +12,7 @@ interface Customer {
     email: string;
     fullAddress: string;
     addressType: 'Work' | 'Home';
+    isSelected?: boolean;
   }>;
   paymentMethods?: Array<{
     type: 'debit/credit card' | 'wallet';
@@ -25,6 +26,7 @@ interface Customer {
       phoneNumber: string;
       franchise: 'JazzCash' | 'EasyPaisa';
     };
+     isSelected?: boolean;
   }>;
 }
 
