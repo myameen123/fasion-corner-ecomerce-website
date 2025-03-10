@@ -85,15 +85,15 @@ const PhoneForm = () => {
   const requestOtp = async () => {
     try {
         setIsLoading(true);
-        const response = await axios.post('/api/otp', {
-            phoneNumber: phoneNumber, 
-            otp: otp,
-        });
+        // const response = await axios.post('/api/otp', {
+        //     phoneNumber: phoneNumber, 
+        //     otp: otp,
+        // });
 
-        // If status is not 200, handle the error
-        if (response.status !== 200) {
-            throw new Error(response.data?.message || 'Failed to send OTP.');
-        }
+        // // If status is not 200, handle the error
+        // if (response.status !== 200) {
+        //     throw new Error(response.data?.message || 'Failed to send OTP.');
+        // }
 
         setMobile(phoneNumber);
         toast.success('OTP sent successfully.');

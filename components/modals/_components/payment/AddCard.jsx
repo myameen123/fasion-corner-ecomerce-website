@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/order */
 "use client";
 import React, { useEffect, useState } from "react";
@@ -34,7 +35,7 @@ function AddCard() {
   const [selectedMethod, setSelectedMethod] = useState(null); // Selected card details
   const [isDialogOpen, setIsDialogOpen] = useState(false); // Controls alert dialog
   const [isRequesting, setIsRequesting] = useState(false); // Controls alert dialog
-  const {items, itemsPrice} = useCartService()
+  const { items, itemsPrice} = useCartService();
 
   useEffect(() => {
     setButtonDisabled(true);
@@ -54,7 +55,7 @@ function AddCard() {
       setIsLoading(true)
       const res = await fetch(`/api/payment/get-payment-methods?phoneNumber=${phoneNumber}`);
       const data = await res.json();
-      console.log("data....",data)
+      // console.log("data....",data)
       if (data.paymentMethods) {
         // Find the selected payment method
         const selected = data.paymentMethods.find((method) => method.isSelected);
@@ -97,6 +98,8 @@ function AddCard() {
       
       const amountInPaisa = subtotal * 100
       setIsRequesting(true)
+      console.log(items)
+      console.log(customer)
       const response = await fetch("/api/payment/charge-saved-card", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -111,6 +114,7 @@ function AddCard() {
   
       if (success) {
         toast.success("Payment successful!");
+        goToStep(3)
       } else {
         toast.error("Payment failed: " + error);
       }

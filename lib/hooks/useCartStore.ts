@@ -10,7 +10,6 @@ type Cart = {
   taxPrice: number;
   shippingPrice: number;
   totalPrice: number;
-
   paymentMethod: string;
   shippingAddress: ShippingAddress;
 };
@@ -27,7 +26,7 @@ const initialState: Cart = {
     address: '',
     city: '',
     postalCode: '',
-    country: '',
+    state: '',
   },
 };
 

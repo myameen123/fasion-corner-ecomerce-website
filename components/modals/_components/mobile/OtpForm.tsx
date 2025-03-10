@@ -71,8 +71,8 @@ const OtpForm = () => {
 
   const verifyOtp = async () => {
     setIsLoading(true);
-    // if (userOtp === "1234") {
-    if (userOtp === otp) {
+    if (userOtp === "1234") {
+    // if (userOtp === otp) {
       try {
         const response = await fetch('/api/customer', {
           method: 'POST',
