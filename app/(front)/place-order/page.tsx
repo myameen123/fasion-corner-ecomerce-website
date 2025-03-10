@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import Form from './Form';
+// import Form from './Form';
 
 export const metadata: Metadata = {
   title: 'Place order',
@@ -9,7 +9,8 @@ export const metadata: Metadata = {
 const PlaceOrderPage = () => {
   return (
     <div>
-      <Form />
+      {/* <Form /> */}
+      order
     </div>
   );
 };
